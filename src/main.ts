@@ -14,15 +14,24 @@ let vehicleFactory = new VehicleFactory();
 let vehicles = requirements.map(({type, ...spec}) => vehicleFactory.createVehicles(type, <VehicleSpec> spec));
 
 vehicles.forEach(vehicle => {
-        [0,1].forEach(() => vehicle.accelerate());
-        [0,1,2,3,4,5,6,7,8,9].forEach(() => vehicle.desacelerate());
-        vehicle.printSpeed();
+    Array(2).fill(1).map(()=> vehicle.accelerate());
+    Array(10).fill(1).map(()=> vehicle.desacelerate());
+    vehicle.printSpeed();
 });
 
 
 function isCar(obj: any): obj is Car{
     return  obj instanceof Car;
 }
+
+function isPlane(obj: any): obj is Plane{
+    return  obj instanceof Plane;
+}
+
+function isBoat(obj: any): obj is Boat{
+    return  obj instanceof Boat;
+}
+
 
 let result = vehicles.filter( isCar );
 result.forEach(vehicleFiltered => vehicleFiltered.printSpeed() );
